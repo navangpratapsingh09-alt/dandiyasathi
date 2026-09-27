@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>DandiyaMatch – Find Your Perfect Raas Partner 🔥</title>
+<meta name="theme-color" content="#4A0A12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --maroon: #6B0F1A;
+    --maroon-dark: #3D0810;
+    --maroon-deep: #2A050B;
+    --orange: #FF6B35;
+    --orange-bright: #FF8C42;
+    --gold: #FFD700;
+    --gold-soft: #FFE566;
+    --emerald: #0A7A3E;
+    --emerald-light: #12B886;
+    --cream: #FFF8E7;
+    --neon-pink: #FF2E63;
+    --neon-cyan: #00F5D4;
+    --neon-purple: #BF5AF2;
+    --glass: rgba(255, 248, 231, 0.08);
+    --glass-strong: rgba(255, 248, 231, 0.14);
+    --glass-border: rgba(255, 215, 0, 0.22);
+    --text: #FFF8E7;
+    --text-muted: rgba(255, 248, 231, 0.65);
+    --shadow: 0 12px 40px rgba(0,0,0,0.45);
+    --radius: 22px;
+    --transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  [data-theme="light"] {
+    --maroon-dark: #FFF5EB;
+    --maroon-deep: #FFE8D6;
+    --text: #2D0A12;
+    --text-muted: rgba(45, 10, 18, 0.65);
+    --glass: rgba(255,255,255,0.7);
+    --glass-strong: rgba(255,255,255,0.85);
+    --glass-border: rgba(107,15,26,0.12);
+    --shadow: 0 12px 40px rgba(107,15,26,0.12);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+  body {
+    font-family: 'Poppins', 'Noto Sans Devanagari', system-ui, sans-serif;
+    background: var(--maroon-deep);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ===== LIVING BACKGROUND ===== */
+  .bg-pattern {
+    position: fixed; inset: 0; z-index: 0;
+    background: 
+      radial-gradient(ellipse 80% 50% at 10% 10%, rgba(255,107,53,0.18) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 90% 80%, rgba(255,215,0,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 50% 50%, rgba(18,184,134,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 70% 20%, rgba(255,46,99,0.08) 0%, transparent 50%),
+      linear-gradient(160deg, #2A050B 0%, #4A0A12 35%, #3D0810 70%, #1F0408 100%);
+  }
+
+  .bg-pattern::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFD700' fill-opacity='0.035'%3E%3Cpath d='M40 8l3 12h13l-10 8 4 12-10-7-10 7 4-12-10-8h13z'/%3E%3C/g%3E%3C/svg%3E");
+    animation: patternDrift 60s linear infinite;
+  }
+
+  @keyframes patternDrift {
+    from { background-position: 0 0; }
+    to { background-position: 80px 80px; }
+  }
+
+  .particles { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+
+  .particle {
+    position: absolute; border-radius: 50%;
+    opacity: 0; animation: floatUp 14s infinite ease-in-out;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(105vh) scale(0) rotate(0); opacity: 0; }
+    8% { opacity: 0.6; }
+    90% { opacity: 0.25; }
+    100% { transform: translateY(-8vh) scale(1) rotate(720deg); opacity: 0; }
+  }
+
+  /* Floating decorative sticks */
+  .float-stick {
+    position: fixed; width: 8px; height: 48px;
+    background: linear-gradient(180deg, var(--gold), var(--orange));
+    border-radius: 4px; opacity: 0.12; z-index: 1; pointer-events: none;
+    animation: stickFloat 18s infinite ease-in-out;
+  }
+
+  @keyframes stickFloat {
+    0%,100% { transform: translateY(0) rotate(-20deg); }
+    50% { transform: translateY(-40px) rotate(25deg); }
+  }
+
+  .app {
+    position: relative; z-index: 2;
+    max-width: 440px; margin: 0 auto;
+    min-height: 100vh; display: flex; flex-direction: column;
+  }
+
+  /* ===== SCREENS ===== */
+  .screen {
+    display: none; flex: 1; flex-direction: column;
+    padding: 14px 16px 100px; animation: screenIn 0.45s cubic-bezier(0.22,1,0.36,1);
+  }
+  .screen.active { display: flex; }
+
+  @keyframes screenIn {
+    from { opacity: 0; transform: translateY(18px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* ===== SPLASH ===== */
+  #splash {
+    justify-content: center; align-items: center; text-align: center;
+    padding: 32px 24px; position: relative;
+  }
+
+  .logo-glow {
+    position: absolute; width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(255,107,53,0.25) 0%, transparent 70%);
+    border-radius: 50%; filter: blur(40px); top: 18%; left: 50%;
+    transform: translateX(-50%); animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%,100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.15); }
+  }
+
+  .dandiya-stage {
+    position: relative; height: 110px; margin-bottom: 8px;
+    display: flex; justify-content: center; align-items: flex-end;
+  }
+
+  .stick {
+    width: 14px; height: 85px;
+    background: linear-gradient(180deg, #FFE566 0%, #FFD700 30%, #FF6B35 100%);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255,215,0,0.55), 0 0 40px rgba(255,107,53,0.3);
+    transform-origin: 50% 95%;
+  }
+  .stick.left { animation: clashL 1.1s ease-in-out infinite; margin-right: 6px; }
+  .stick.right { animation: clashR 1.1s ease-in-out infinite; }
+
+  @keyframes clashL {
+    0%,100% { transform: rotate(-28deg); }
+    45% { transform: rotate(18deg); }
+    55% { transform: rotate(18deg); }
+  }
+  @keyframes clashR {
+    0%,100% { transform: rotate(28deg); }
+    45% { transform: rotate(-18deg); }
+    55% { transform: rotate(-18deg); }
+  }
+
+  .clash-burst {
+    position: absolute; top: 25%; left: 50%; transform: translateX(-50%);
+    font-size: 28px; animation: burst 1.1s ease-in-out infinite;
+  }
+
+  @keyframes burst {
+    0%,40%,100% { opacity: 0; transform: translateX(-50%) scale(0.3); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.4); }
+  }
+
+  .logo {
+    font-size: 2.9rem; font-weight: 900; letter-spacing: -1.5px;
+    background: linear-gradient(125deg, #FFE566 0%, #FFD700 25%, #FF6B35 55%, #FF2E63 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 6px;
+    text-shadow: 0 0 40px rgba(255,107,53,0.3);
+    animation: logoShine 4s ease-in-out infinite;
+  }
+
+  @keyframes logoShine {
+    0%,100% { filter: brightness(1); }
+    50% { filter: brightness(1.15); }
+  }
+
+  .tagline {
+    font-size: 1.05rem; color: var(--text-muted); font-weight: 400;
+    margin-bottom: 6px; max-width: 280px; margin-left: auto; margin-right: auto;
+  }
+
+  .devanagari {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 1.35rem; font-weight: 700; color: var(--gold);
+    margin-bottom: 36px; letter-spacing: 1px;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 16px 32px; border: none; border-radius: 60px;
+    font-family: inherit; font-size: 1.05rem; font-weight: 700;
+    cursor: pointer; transition: var(--transition); position: relative; overflow: hidden;
+  }
+
+  .btn::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+    transform: translateX(-100%); transition: transform 0.6s ease;
+  }
+  .btn:hover::after, .btn:active::after { transform: translateX(100%); }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #FF8C42 0%, #FF6B35 40%, #FF2E63 100%);
+    color: #fff; box-shadow: 0 8px 28px rgba(255,107,53,0.5), 0 0 0 1px rgba(255,255,255,0.1) inset;
+  }
+  .btn-primary:hover, .btn-primary:active {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 14px 36px rgba(255,107,53,0.6);
+  }
+
+  .btn-secondary {
+    background: var(--glass-strong); color: var(--text);
+    border: 1px solid var(--glass-border); backdrop-filter: blur(16px);
+  }
+  .btn-secondary:hover { border-color: var(--gold); transform: translateY(-2px); }
+
+  .btn-full { width: 100%; }
+
+  .trust-row {
+    display: flex; justify-content: center; gap: 18px; margin-top: 28px;
+    font-size: 0.75rem; color: var(--text-muted); flex-wrap: wrap;
+  }
+  .trust-item { display: flex; align-items: center; gap: 5px; }
+
+  /* ===== CARDS & FORMS ===== */
+  .card {
+    background: var(--glass); backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border); border-radius: var(--radius);
+    padding: 18px; margin-bottom: 14px; box-shadow: var(--shadow);
+    transition: var(--transition);
+  }
+  .card:hover { border-color: rgba(255,215,0,0.35); }
+
+  .card-title {
+    font-size: 1.05rem; font-weight: 700; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .form-group { margin-bottom: 14px; }
+  .form-group label {
+    display: block; font-size: 0.8rem; color: var(--text-muted);
+    margin-bottom: 6px; font-weight: 500; letter-spacing: 0.3px;
+  }
+
+  select, input[type="text"], input[type="number"] {
+    width: 100%; padding: 13px 16px; border-radius: 14px;
+    border: 1px solid var(--glass-border); background: rgba(0,0,0,0.28);
+    color: var(--text); font-family: inherit; font-size: 0.95rem; outline: none;
+    transition: var(--transition);
+  }
+  [data-theme="light"] select, [data-theme="light"] input { background: rgba(255,255,255,0.9); }
+  select:focus, input:focus {
+    border-color: var(--gold); box-shadow: 0 0 0 3px rgba(255,215,0,0.18);
+  }
+
+  .chip-group { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    padding: 9px 16px; border-radius: 50px; background: rgba(0,0,0,0.32);
+    border: 1.5px solid transparent; font-size: 0.84rem; font-weight: 600;
+    cursor: pointer; transition: var(--transition); color: var(--text-muted);
+  }
+  .chip.active {
+    background: linear-gradient(135deg, #FF8C42, #FF2E63);
+    color: #fff; box-shadow: 0 4px 16px rgba(255,107,53,0.4);
+  }
+  .chip:hover:not(.active) { border-color: var(--gold); color: var(--text); }
+
+  /* ===== HEADER ===== */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 2px 14px; position: sticky; top: 0; z-index: 20;
+    background: linear-gradient(to bottom, rgba(42,5,11,0.97) 60%, transparent);
+  }
+  [data-theme="light"] .header {
+    background: linear-gradient(to bottom, rgba(255,245,235,0.97) 60%, transparent);
+  }
+
+  .header h1 {
+    font-size: 1.35rem; font-weight: 800;
+    background: linear-gradient(90deg, #FFE566, #FF6B35);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  .header-actions { display: flex; gap: 8px; }
+  .icon-btn {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--glass); border: 1px solid var(--glass-border);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 1.15rem; transition: var(--transition); color: var(--text);
+  }
+  .icon-btn:hover { background: rgba(255,215,0,0.18); transform: scale(1.08); }
+
+  /* ===== SWIPE CARDS ===== */
+  .swipe-container {
+    position: relative; height: 540px; margin-bottom: 12px;
+    perspective: 1200px;
+  }
+
+  .profile-card {
+    position: absolute; inset: 0; border-radius: 26px; overflow: hidden;
+    background: #1a080c; box-shadow: 0 25px 50px rgba(0,0,0,0.55);
+    transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease;
+    cursor: grab; user-select: none; touch-action: none;
+  }
+  .profile-card:active { cursor: grabbing; }
+
+  .profile-card img {
+    width: 100%; height: 68%; object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .profile-card:hover img { transform: scale(1.03); }
+
+  .card-overlay-top {
+    position: absolute; top: 0; left: 0; right: 0; height: 120px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);
+    pointer-events: none;
+  }
+
+  .compat-score {
+    position: absolute; top: 16px; right: 16px;
+    background: linear-gradient(135deg, #0A7A3E, #12B886);
+    color: #fff; padding: 8px 14px; border-radius: 50px;
+    font-weight: 800; font-size: 0.95rem;
+    box-shadow: 0 4px 18px rgba(18,184,134,0.45);
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  .live-badge {
+    position: absolute; top: 16px; left: 16px;
+    background: rgba(0,0,0,0.55); backdrop-filter: blur(8px);
+    color: #12B886; padding: 6px 12px; border-radius: 50px;
+    font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; gap: 5px;
+    border: 1px solid rgba(18,184,134,0.3);
+  }
+  .live-dot {
+    width: 7px; height: 7px; background: #12B886; border-radius: 50%;
+    animation: livePulse 1.4s infinite;
+  }
+  @keyframes livePulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .profile-info {
+    position: absolute; bottom: 0; left: 0; right: 0; padding: 22px 18px 18px;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 55%, transparent);
+  }
+
+  .profile-name {
+    font-size: 1.55rem; font-weight: 800; display: flex; align-items: center; gap: 8px;
+  }
+  .verified-tick {
+    width: 20px; height: 20px; background: linear-gradient(135deg,#12B886,#0A7A3E);
+    border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px; color: #fff;
+  }
+
+  .profile-meta { font-size: 0.88rem; color: rgba(255,248,231,0.7); margin: 3px 0 10px; }
+
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .badge {
+    padding: 5px 11px; border-radius: 20px; font-size: 0.72rem; font-weight: 700;
+    background: rgba(255,215,0,0.15); color: var(--gold);
+    border: 1px solid rgba(255,215,0,0.25);
+  }
+  .badge.dance {
+    background: rgba(18,184,134,0.2); color: #5EEAD4;
+    border-color: rgba(18,184,134,0.35);
+  }
+  .badge.hot {
+    background: rgba(255,46,99,0.2); color: #FF6B9D;
+    border-color: rgba(255,46,99,0.35);
+  }
+
+  .swipe-actions {
+    display: flex; justify-content: center; gap: 22px; margin: 6px 0 10px;
+  }
+
+  .swipe-btn {
+    width: 66px; height: 66px; border-radius: 50%; border: none;
+    font-size: 1.7rem; cursor: pointer; transition: var(--transition);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  }
+  .swipe-btn.nope {
+    background: #2a1218; color: #FF6B6B; border: 2.5px solid #FF6B6B;
+  }
+  .swipe-btn.like {
+    background: linear-gradient(145deg, #12B886, #0A7A3E); color: #fff;
+  }
+  .swipe-btn.super {
+    background: linear-gradient(145deg, #FFE566, #FF6B35); color: #2A050B;
+    width: 56px; height: 56px; font-size: 1.4rem; align-self: center;
+  }
+  .swipe-btn:hover { transform: scale(1.12); }
+  .swipe-btn:active { transform: scale(0.95); }
+
+  /* ===== EVENTS STRIP ===== */
+  .events-strip { margin: 8px 0 4px; }
+  .events-strip h3 {
+    font-size: 0.95rem; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 6px; font-weight: 700;
+  }
+  .events-scroll {
+    display: flex; gap: 12px; overflow-x: auto; padding-bottom: 6px;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .events-scroll::-webkit-scrollbar { display: none; }
+
+  .event-card {
+    min-width: 195px; background: var(--glass-strong);
+    border: 1px solid var(--glass-border); border-radius: 18px;
+    padding: 14px; backdrop-filter: blur(14px); transition: var(--transition);
+    position: relative; overflow: hidden;
+  }
+  .event-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .event-card .event-title { font-weight: 700; font-size: 0.88rem; margin-bottom: 4px; }
+  .event-card .event-meta { font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; }
+  .event-hot {
+    display: inline-block; margin-top: 8px; padding: 3px 9px;
+    background: linear-gradient(90deg, rgba(255,46,99,0.25), rgba(255,107,53,0.2));
+    color: #FF6B9D; border-radius: 12px; font-size: 0.68rem; font-weight: 700;
+  }
+
+  /* ===== MATCH LIST ===== */
+  .match-list { display: flex; flex-direction: column; gap: 12px; }
+  .match-item {
+    display: flex; gap: 14px; align-items: center; padding: 14px;
+    background: var(--glass); border: 1px solid var(--glass-border);
+    border-radius: 20px; backdrop-filter: blur(14px); cursor: pointer;
+    transition: var(--transition); position: relative; overflow: hidden;
+  }
+  .match-item::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background: linear-gradient(180deg, var(--gold), var(--orange));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .match-item:hover { border-color: rgba(255,215,0,0.4); transform: translateX(5px); }
+  .match-item:hover::before { opacity: 1; }
+
+  .match-avatar {
+    width: 66px; height: 66px; border-radius: 50%; object-fit: cover;
+    border: 2.5px solid var(--gold); box-shadow: 0 0 16px rgba(255,215,0,0.25);
+  }
+  .match-info { flex: 1; min-width: 0; }
+  .match-info h4 { font-size: 1rem; font-weight: 700; }
+  .match-info p { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+  .why-match {
+    font-size: 0.72rem; color: var(--gold-soft); margin-top: 5px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .score-pill {
+    background: linear-gradient(135deg,#12B886,#0A7A3E); color: #fff;
+    padding: 6px 11px; border-radius: 20px; font-weight: 800; font-size: 0.82rem;
+  }
+
+  /* ===== CHAT ===== */
+  .chat-list { display: flex; flex-direction: column; gap: 10px; }
+  .chat-item {
+    display: flex; gap: 12px; align-items: center; padding: 13px;
+    background: var(--glass); border-radius: 18px; border: 1px solid var(--glass-border);
+    cursor: pointer; transition: var(--transition);
+  }
+  .chat-item:hover { border-color: var(--gold); }
+  .chat-avatar { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; }
+  .chat-preview { flex: 1; min-width: 0; }
+  .chat-preview h4 { font-size: 0.95rem; font-weight: 600; }
+  .chat-preview p {
+    font-size: 0.78rem; color: var(--text-muted);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .chat-time { font-size: 0.68rem; color: var(--text-muted); }
+  .unread {
+    width: 10px; height: 10px; background: var(--neon-pink); border-radius: 50%;
+    box-shadow: 0 0 8px var(--neon-pink);
+  }
+
+  /* ===== PROFILE ===== */
+  .profile-header { text-align: center; margin-bottom: 18px; }
+  .profile-pic-wrap {
+    position: relative; display: inline-block; margin-bottom: 12px;
+  }
+  .profile-pic {
+    width: 118px; height: 118px; border-radius: 50%; object-fit: cover;
+    border: 3.5px solid var(--gold);
+    box-shadow: 0 0 30px rgba(255,215,0,0.35), 0 0 60px rgba(255,107,53,0.15);
+  }
+  .profile-pic-ring {
+    position: absolute; inset: -6px; border-radius: 50%;
+    border: 2px dashed rgba(255,215,0,0.4); animation: spinSlow 20s linear infinite;
+  }
+  @keyframes spinSlow { to { transform: rotate(360deg); } }
+
+  .toggle-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .toggle {
+    width: 50px; height: 30px; background: rgba(0,0,0,0.4); border-radius: 20px;
+    position: relative; cursor: pointer; transition: var(--transition);
+  }
+  .toggle.on { background: linear-gradient(135deg, #12B886, #0A7A3E); }
+  .toggle::after {
+    content: ''; position: absolute; width: 24px; height: 24px;
+    background: #fff; border-radius: 50%; top: 3px; left: 3px;
+    transition: var(--transition); box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  .toggle.on::after { left: 23px; }
+
+  /* ===== BOTTOM NAV ===== */
+  .bottom-nav {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 440px;
+    background: rgba(25,4,9,0.94); backdrop-filter: blur(24px);
+    border-top: 1px solid var(--glass-border);
+    display: flex; justify-content: space-around;
+    padding: 10px 0 max(16px, env(safe-area-inset-bottom));
+    z-index: 100;
+  }
+  [data-theme="light"] .bottom-nav { background: rgba(255,245,235,0.95); }
+
+  .nav-item {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    background: none; border: none; color: var(--text-muted);
+    font-size: 0.68rem; font-weight: 600; cursor: pointer;
+    transition: var(--transition); padding: 6px 10px; border-radius: 14px;
+  }
+  .nav-item span.icon { font-size: 1.35rem; transition: transform 0.3s; }
+  .nav-item.active { color: var(--gold); }
+  .nav-item.active span.icon { transform: scale(1.15); }
+  .nav-item:hover { color: var(--gold-soft); }
+
+  /* ===== FAB ===== */
+  .fab {
+    position: fixed; bottom: 92px; right: max(14px, calc(50% - 205px));
+    width: 58px; height: 58px; border-radius: 50%;
+    background: linear-gradient(135deg, #FF8C42, #FF2E63);
+    color: #fff; border: none; font-size: 1.55rem;
+    box-shadow: 0 8px 28px rgba(255,107,53,0.55), 0 0 0 4px rgba(255,107,53,0.15);
+    cursor: pointer; z-index: 99; transition: var(--transition);
+    display: flex; align-items: center; justify-content: center;
+    animation: fabPulse 2.5s ease-in-out infinite;
+  }
+  @keyframes fabPulse {
+    0%,100% { box-shadow: 0 8px 28px rgba(255,107,53,0.55), 0 0 0 4px rgba(255,107,53,0.15); }
+    50% { box-shadow: 0 8px 28px rgba(255,107,53,0.55), 0 0 0 10px rgba(255,107,53,0.08); }
+  }
+  .fab:hover { transform: scale(1.12) rotate(12deg); }
+  .fab.hidden { display: none; }
+
+  /* ===== MATCH MODAL ===== */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.88);
+    z-index: 200; display: none; align-items: center; justify-content: center;
+    padding: 20px; animation: fadeIn 0.35s ease;
+  }
+  .modal-overlay.active { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .match-modal {
+    background: linear-gradient(165deg, #4A0A12 0%, #2A050B 60%, #1A0308 100%);
+    border: 2px solid transparent;
+    border-image: linear-gradient(135deg, #FFD700, #FF6B35, #FF2E63) 1;
+    border-radius: 32px; padding: 32px 22px 24px; text-align: center;
+    max-width: 360px; width: 100%; position: relative; overflow: hidden;
+    box-shadow: 0 0 80px rgba(255,215,0,0.25), 0 0 120px rgba(255,107,53,0.15);
+    animation: modalPop 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes modalPop {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .match-modal::before {
+    content: ''; position: absolute; inset: -60%;
+    background: conic-gradient(from 0deg, transparent, rgba(255,215,0,0.08), transparent 30%);
+    animation: spinSlow 12s linear infinite;
+  }
+
+  .match-title {
+    font-size: 2rem; font-weight: 900;
+    background: linear-gradient(90deg, #FFE566, #FF6B35, #FF2E63);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 4px; position: relative;
+  }
+  .match-subtitle {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 1.15rem; color: var(--gold); margin-bottom: 22px; font-weight: 600;
+  }
+
+  .match-photos {
+    display: flex; justify-content: center; align-items: center;
+    margin-bottom: 18px; position: relative; height: 120px;
+  }
+  .match-photo {
+    width: 108px; height: 108px; border-radius: 50%; object-fit: cover;
+    border: 3.5px solid var(--gold);
+    box-shadow: 0 0 25px rgba(255,215,0,0.4);
+  }
+  .match-photo:first-child { transform: rotate(-10deg) translateX(8px); z-index: 1; }
+  .match-photo:last-child { transform: rotate(10deg) translateX(-8px); margin-left: -18px; }
+  .match-heart {
+    position: absolute; font-size: 2.2rem; z-index: 3;
+    animation: heartbeat 0.9s ease infinite;
+    filter: drop-shadow(0 0 12px rgba(255,46,99,0.6));
+  }
+  @keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+  }
+
+  .confetti { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .confetti-piece {
+    position: absolute; width: 9px; height: 9px; top: -12px;
+    animation: confettiFall 3.2s ease-out forwards;
+  }
+  @keyframes confettiFall {
+    to { transform: translateY(110vh) rotate(900deg); opacity: 0; }
+  }
+
+  /* ===== AI PLAN ===== */
+  .ai-plan { text-align: left; }
+  .ai-plan h3 { text-align: center; margin-bottom: 16px; color: var(--gold); font-size: 1.25rem; }
+  .plan-item {
+    background: rgba(0,0,0,0.32); border-radius: 14px; padding: 13px;
+    margin-bottom: 10px; font-size: 0.88rem; border: 1px solid rgba(255,215,0,0.08);
+  }
+
+  /* ===== TOAST ===== */
+  .toast {
+    position: fixed; bottom: 115px; left: 50%; transform: translateX(-50%) translateY(24px);
+    background: linear-gradient(135deg, #12B886, #0A7A3E); color: #fff;
+    padding: 13px 26px; border-radius: 50px; font-weight: 700; font-size: 0.9rem;
+    opacity: 0; transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 300; pointer-events: none; box-shadow: 0 8px 24px rgba(18,184,134,0.4);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* Like / Nope stamps */
+  .stamp {
+    position: absolute; top: 30%; font-size: 3.5rem; font-weight: 900;
+    border: 5px solid; padding: 8px 18px; border-radius: 12px;
+    opacity: 0; transform: rotate(-20deg) scale(0.5); pointer-events: none;
+    transition: all 0.25s ease; z-index: 10;
+  }
+  .stamp.like { color: #12B886; border-color: #12B886; left: 20px; }
+  .stamp.nope { color: #FF6B6B; border-color: #FF6B6B; right: 20px; transform: rotate(20deg) scale(0.5); }
+
+  @media (min-width: 768px) {
+    .app {
+      max-width: 420px;
+      box-shadow: 0 0 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,215,0,0.08);
+    }
+    body { display: flex; justify-content: center; background: #120308; }
+  }
+
+  .hidden { display: none !important; }
+</style>
+
+<!-- Firebase Auth SDKs. Replace firebaseConfig near the bottom before publishing. -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import {
+    getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect,
+    onAuthStateChanged, signOut
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+  window.FirebaseAuth = {initializeApp, getAuth, GoogleAuthProvider, signInWithPopup,
+    signInWithRedirect, onAuthStateChanged, signOut};
+</script>
+<style>
+  #authGate{justify-content:center;align-items:center;text-align:center;padding:30px 22px}
+  .auth-logo{font-size:2.35rem;font-weight:900;margin-bottom:4px;background:linear-gradient(125deg,#FFE566,#FFD700,#FF6B35,#FF2E63);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .auth-sub{color:var(--text-muted);font-size:.9rem;line-height:1.5;margin:0 auto 20px;max-width:330px}
+  .auth-btn{margin-bottom:10px}
+  .auth-error{color:#FF9A9A;font-size:.78rem;min-height:20px;margin:8px 0}
+  .guest-note{font-size:.72rem;color:var(--text-muted);margin-top:14px;line-height:1.45}
+  .guest-badge{display:inline-block;padding:5px 10px;border-radius:20px;background:rgba(255,215,0,.12);color:var(--gold);font-size:.7rem;font-weight:700;margin-bottom:10px}
+  .account-chip{display:flex;align-items:center;gap:8px;padding:7px 11px;border-radius:30px;background:var(--glass);border:1px solid var(--glass-border);font-size:.72rem}
+  .account-chip img{width:25px;height:25px;border-radius:50%;object-fit:cover}
+</style>
+
+</head>
+<body>
+  <div class="bg-pattern"></div>
+  <div class="particles" id="particles"></div>
+  <div class="float-stick" style="left:8%;top:20%;animation-delay:0s"></div>
+  <div class="float-stick" style="right:6%;top:45%;animation-delay:4s;height:36px"></div>
+  <div class="float-stick" style="left:12%;bottom:25%;animation-delay:8s;height:42px"></div>
+
+  <div class="app">
+    <!-- SPLASH -->
+    <div class="screen active" id="splash">
+      <div class="logo-glow"></div>
+      <div class="dandiya-stage">
+        <div class="stick left"></div>
+        <div class="stick right"></div>
+        <div class="clash-burst">✨</div>
+      </div>
+      <div class="logo">DandiyaMatch</div>
+      <div class="tagline">Find your perfect Raas partner for Navratri nights</div>
+      <div class="devanagari">रास की रातें, सही साथी के साथ</div>
+      <button class="btn btn-primary btn-full" onclick="showScreen('onboarding')">
+        Start Matching 🔥
+      </button>
+      <div class="trust-row">
+        <div class="trust-item">✅ College ID Verified</div>
+        <div class="trust-item">🛡️ Safe Meetups</div>
+        <div class="trust-item">💃 Cultural Pride</div>
+      </div>
+    </div>
+
+
+    <!-- AUTH GATE – Google Sign-In only (secure, no OTP) -->
+    <div class="screen" id="authGate">
+      <div class="logo-glow"></div>
+      <div class="dandiya-stage"><div class="stick left"></div><div class="stick right"></div><div class="clash-burst">✨</div></div>
+      <div class="auth-logo">DandiyaMatch</div>
+      <div class="auth-sub">Sign in securely with your Google account to match, like and chat. Continue as guest to browse only.</div>
+      <div class="card" style="width:100%;max-width:360px">
+        <div class="guest-badge">🔐 SECURE GOOGLE SIGN-IN</div>
+        <button class="btn btn-primary btn-full auth-btn" onclick="loginWithGoogle()">🔵 Continue with Google</button>
+        <div id="authError" class="auth-error"></div>
+        <p style="font-size:0.72rem;color:var(--text-muted);margin-top:12px;line-height:1.4">
+          🔒 Secure login • Notifications on • Hourly match reminders
+        </p>
+      </div>
+      <button class="btn btn-secondary btn-full" style="max-width:360px;margin-top:10px" onclick="continueAsGuest()">👀 Continue as Guest</button>
+      <div class="guest-note">Guest mode = view only. Likes, matching, messaging and profile editing require sign-in. Allow notifications for hourly reminders & security alerts.</div>
+    </div>
+
+    <!-- ONBOARDING -->
+    <div class="screen" id="onboarding">
+      <div class="header">
+        <h1>Quick Setup ✨</h1>
+        <div class="header-actions">
+          <button class="icon-btn" onclick="toggleTheme()">🌓</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🎓 Your College</div>
+        <div class="form-group">
+          <label>Select College</label>
+          <select id="college" onchange="onCollegeChange()">
+            <optgroup label="⭐ Greater Noida – Popular">
+              <option value="Galgotias College of Engineering and Technology (GCET)">Galgotias College of Engineering and Technology (GCET)</option>
+              <option value="Galgotias University">Galgotias University</option>
+              <option value="Sharda University">Sharda University</option>
+              <option value="G.L. Bajaj Institute of Technology and Management">G.L. Bajaj Institute of Technology and Management</option>
+              <option value="Noida Institute of Engineering and Technology (NIET)">Noida Institute of Engineering and Technology (NIET)</option>
+              <option value="Greater Noida Institute of Technology (GNIOT)">Greater Noida Institute of Technology (GNIOT)</option>
+              <option value="Bennett University">Bennett University</option>
+              <option value="Shiv Nadar University">Shiv Nadar University</option>
+              <option value="Gautam Buddha University">Gautam Buddha University</option>
+              <option value="Dronacharya Group of Institutions">Dronacharya Group of Institutions</option>
+            </optgroup>
+            <optgroup label="📍 Greater Noida – More">
+              <option value="KCC Institute of Technology and Management">KCC Institute of Technology and Management</option>
+              <option value="ITS Engineering College">ITS Engineering College</option>
+              <option value="JIMS Engineering Management Technical Campus">JIMS Engineering Management Technical Campus</option>
+              <option value="Delhi Technical Campus">Delhi Technical Campus</option>
+              <option value="Skyline Institute of Engineering and Technology">Skyline Institute of Engineering and Technology</option>
+              <option value="IEC College of Engineering and Technology">IEC College of Engineering and Technology</option>
+              <option value="Lloyd Institute of Engineering and Technology">Lloyd Institute of Engineering and Technology</option>
+              <option value="IIMT College of Engineering">IIMT College of Engineering</option>
+              <option value="Accurate Institute of Management and Technology">Accurate Institute of Management and Technology</option>
+              <option value="Vishveshwarya Group of Institutions">Vishveshwarya Group of Institutions</option>
+              <option value="Noida International University">Noida International University</option>
+              <option value="JRE Group of Institutions">JRE Group of Institutions</option>
+              <option value="IILM University Greater Noida">IILM University Greater Noida</option>
+            </optgroup>
+            <optgroup label="🏙️ Delhi / NCR">
+              <option value="Delhi University">Delhi University</option>
+              <option value="Lady Shri Ram College">Lady Shri Ram College</option>
+              <option value="SRCC">SRCC</option>
+              <option value="JNU">JNU</option>
+              <option value="IIT Delhi">IIT Delhi</option>
+              <option value="Amity University Noida">Amity University Noida</option>
+              <option value="JSS Academy of Technical Education Noida">JSS Academy of Technical Education Noida</option>
+              <option value="Jaypee Institute of Information Technology (JIIT)">Jaypee Institute of Information Technology (JIIT)</option>
+              <option value="Christ University">Christ University</option>
+            </optgroup>
+            <option value="Other">Other (type manually)</option>
+          </select>
+        </div>
+        <div class="form-group hidden" id="collegeOtherWrap">
+          <label>Enter your college name</label>
+          <input type="text" id="collegeOther" placeholder="e.g. My College Name" maxlength="80">
+        </div>
+        <div class="form-group">
+          <label>Year</label>
+          <div class="chip-group" id="yearChips">
+            <div class="chip active" data-val="1">1st</div>
+            <div class="chip" data-val="2">2nd</div>
+            <div class="chip" data-val="3">3rd</div>
+            <div class="chip" data-val="4">4th+</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">💃 Dance Preferences</div>
+        <div class="form-group">
+          <label>Skill Level</label>
+          <div class="chip-group" id="skillChips">
+            <div class="chip active" data-val="Beginner">Beginner</div>
+            <div class="chip" data-val="Intermediate">Intermediate</div>
+            <div class="chip" data-val="Pro">Pro 🔥</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Preferred Style</label>
+          <div class="chip-group" id="styleChips">
+            <div class="chip active" data-val="Traditional">Traditional</div>
+            <div class="chip" data-val="Modern fusion">Modern Fusion</div>
+            <div class="chip" data-val="Both">Both</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">❤️ Looking For</div>
+        <div class="chip-group" id="lookingChips">
+          <div class="chip active" data-val="Date">Date</div>
+          <div class="chip" data-val="Group">Group</div>
+          <div class="chip" data-val="Both">Both</div>
+        </div>
+        <div class="form-group" style="margin-top:14px">
+          <label>Gender Preference</label>
+          <div class="chip-group" id="genderChips">
+            <div class="chip active" data-val="Women">Women</div>
+            <div class="chip" data-val="Men">Men</div>
+            <div class="chip" data-val="Everyone">Everyone</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Location Radius (km)</label>
+          <input type="number" id="radius" value="15" min="1" max="50">
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-full" onclick="finishOnboarding()">
+        Find My Matches ✨
+      </button>
+    </div>
+
+    <!-- HOME -->
+    <div class="screen" id="home">
+      <div class="header">
+        <h1>🔥 Tonight’s Vibes</h1>
+        <div class="header-actions">
+          <button class="icon-btn" onclick="toggleTheme()">🌓</button>
+          <button class="icon-btn" onclick="showScreen('profile')">👤</button>
+        </div>
+      </div>
+
+      <div class="swipe-container" id="swipeContainer"></div>
+
+      <div class="swipe-actions">
+        <button class="swipe-btn nope" onclick="swipe('left')" title="Nope">✕</button>
+        <button class="swipe-btn super" onclick="swipe('super')" title="Super Like">⭐</button>
+        <button class="swipe-btn like" onclick="swipe('right')" title="Like">♥️</button>
+      </div>
+
+      <div class="events-strip">
+        <h3>🎉 Tonight’s Hot Events</h3>
+        <div class="events-scroll" id="eventsScroll"></div>
+      </div>
+    </div>
+
+    <!-- AI MATCHES -->
+    <div class="screen" id="matches">
+      <div class="header">
+        <h1>🤖 AI Matches</h1>
+        <div class="header-actions">
+          <button class="icon-btn" onclick="refreshMatches()">🔄</button>
+        </div>
+      </div>
+      <p style="font-size:0.84rem;color:var(--text-muted);margin-bottom:14px;line-height:1.45">
+        Ranked by dance compatibility, music taste, college circles & style aesthetics.
+      </p>
+      <div class="match-list" id="matchList"></div>
+    </div>
+
+    <!-- EVENTS -->
+    <div class="screen" id="events">
+      <div class="header"><h1>📅 Events & Outfits</h1></div>
+      <div class="card">
+        <div class="card-title">🧠 AI Event Finder</div>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:12px">
+          Scanning Instagram, college pages & WhatsApp groups near you...
+        </p>
+        <div id="aiEvents"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">👗 Outfit Assistant</div>
+        <p style="font-size:0.84rem;margin-bottom:10px">Personalized for your Intermediate Traditional vibe:</p>
+        <div class="plan-item">
+          <strong>Top Pick:</strong> Emerald green mirror-work chaniya choli + gold gota + oxidized jhumkas. Perfect energy for Pro-level nights.
+        </div>
+        <div class="plan-item">
+          <strong>Alt Look:</strong> Bright orange bandhej lehenga with neon stick accents — modern fusion approved.
+        </div>
+        <button class="btn btn-secondary btn-full" style="margin-top:8px" onclick="showToast('Outfit moodboard saved!')">
+          Save Look ✨
+        </button>
+      </div>
+      <div class="card">
+        <div class="card-title">👥 Form a Raas Circle</div>
+        <p style="font-size:0.84rem;margin-bottom:10px">AI built a 6-person circle with complementary levels:</p>
+        <div class="chip-group">
+          <div class="chip active">You (Int)</div>
+          <div class="chip">Priya (Pro)</div>
+          <div class="chip">Arjun (Int)</div>
+          <div class="chip">Sneha (Beg)</div>
+          <div class="chip">Rohan (Pro)</div>
+          <div class="chip">Ananya (Int)</div>
+        </div>
+        <button class="btn btn-primary btn-full" style="margin-top:14px" onclick="showToast('Group invites sent! 💌')">
+          Invite Circle
+        </button>
+      </div>
+    </div>
+
+    <!-- CHAT -->
+    <div class="screen" id="chat">
+      <div class="header"><h1>💬 Chats</h1></div>
+      <div class="chat-list" id="chatList"></div>
+      <div class="card" style="margin-top:14px">
+        <div class="card-title">🧊 AI Ice-breakers</div>
+        <div class="plan-item" style="cursor:pointer" onclick="showToast('Copied to clipboard!')">
+          “Your Garba energy looks fire 🔥 Which dandiya night are you hitting this week?”
+        </div>
+        <div class="plan-item" style="cursor:pointer" onclick="showToast('Copied to clipboard!')">
+          “Pro tip: Traditional sticks or modern glow ones? Asking for a friend 😉”
+        </div>
+        <div class="plan-item" style="cursor:pointer" onclick="showToast('Copied to clipboard!')">
+          “I saw your playlist has ‘Dholida’ on loop… same here 😂 Ready for a raas circle?”
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="screen" id="profile">
+      <div class="header">
+        <h1>My Profile</h1>
+        <div class="header-actions">
+          <button class="icon-btn" onclick="toggleTheme()">🌓</button>
+        </div>
+      </div>
+      <div class="card" id="accountCard" style="margin-bottom:18px;text-align:left">
+        <div class="card-title">🔐 Account</div>
+        <div id="accountInfo" style="font-size:.8rem;color:var(--text-muted);margin-bottom:10px">Signed in</div>
+        <button class="btn btn-secondary btn-full" style="padding:11px 18px" onclick="logoutUser()">Sign out</button>
+      </div>
+      <div class="profile-header">
+        <div class="profile-pic-wrap">
+          <div class="profile-pic-ring"></div>
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" class="profile-pic" alt="You" id="profilePic">
+        </div>
+        <h2 style="font-size:1.4rem;font-weight:800" id="profileName">Rahul Sharma</h2>
+        <p style="color:var(--text-muted);font-size:0.9rem" id="profileMeta">Galgotias College of Engineering and Technology (GCET) • 3rd Year • Intermediate</p>
+        <div class="badges" style="justify-content:center;margin-top:10px" id="profileBadges">
+          <span class="badge">Traditional + Fusion</span>
+          <span class="badge dance">Open to Groups</span>
+          <span class="badge hot">Verified ✅</span>
+        </div>
+        <div id="uniqueIdBadge" style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;background:rgba(255,215,0,0.12);border:1px solid rgba(255,215,0,0.3);font-size:0.78rem;font-weight:700;color:var(--gold)">
+          🪪 ID: <span id="uniqueIdText">—</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="toggle-row">
+          <span>Open to group invites</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="toggle-row">
+          <span>Looking for serious</span>
+          <div class="toggle" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="toggle-row">
+          <span>Just for Navratri nights</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="toggle-row">
+          <span>🔔 Hourly bot reminders</span>
+          <div class="toggle on" id="notifToggle" onclick="toggleNotifications(this)"></div>
+        </div>
+        <div class="toggle-row">
+          <span>🛡️ Security alerts</span>
+          <div class="toggle on" id="securityToggle" onclick="this.classList.toggle('on'); localStorage.setItem('dm_security_alerts', this.classList.contains('on')?'1':'0')"></div>
+        </div>
+        <div class="toggle-row">
+          <span>College ID Verified</span>
+          <span style="color:#12B886;font-weight:700">✅ Verified</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🎵 My Dandiya Playlist</div>
+        <p style="font-size:0.84rem;color:var(--text-muted)">Dholida • Nagada Sang Dhol • Aavi Navratri • Raas Leela Mix • Dhol Baaje</p>
+      </div>
+      <button class="btn btn-secondary btn-full" onclick="openOnboardingForEdit()">Edit Preferences</button>
+    </div>
+  </div>
+
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav" id="bottomNav" style="display:none">
+    <button class="nav-item active" data-screen="home" onclick="showScreen('home')">
+      <span class="icon">🏠</span> Home
+    </button>
+    <button class="nav-item" data-screen="matches" onclick="showScreen('matches')">
+      <span class="icon">🤖</span> AI
+    </button>
+    <button class="nav-item" data-screen="events" onclick="showScreen('events')">
+      <span class="icon">📅</span> Events
+    </button>
+    <button class="nav-item" data-screen="chat" onclick="showScreen('chat')">
+      <span class="icon">💬</span> Chat
+    </button>
+    <button class="nav-item" data-screen="profile" onclick="showScreen('profile')">
+      <span class="icon">👤</span> Profile
+    </button>
+  </nav>
+
+  <button class="fab hidden" id="fab" onclick="openAIPlan()" title="Ask AI for tonight’s plan">✨</button>
+
+  <!-- Match Modal -->
+  <div class="modal-overlay" id="matchModal">
+    <div class="match-modal">
+      <div class="confetti" id="confetti"></div>
+      <div class="match-title">It’s a Match! 🎉</div>
+      <div class="match-subtitle">शुभ मेल • Perfect Raas Partner</div>
+      <div class="match-photos">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" class="match-photo" id="matchYou">
+        <div class="match-heart">💖</div>
+        <img src="" class="match-photo" id="matchThem">
+      </div>
+      <p style="font-size:0.9rem;margin-bottom:18px;position:relative;line-height:1.45" id="matchMsg">
+        You both love Traditional Garba & share college energy!
+      </p>
+      <div style="display:flex;gap:10px;position:relative">
+        <button class="btn btn-secondary" style="flex:1;padding:13px" onclick="closeMatch()">Keep Swiping</button>
+        <button class="btn btn-primary" style="flex:1;padding:13px" onclick="closeMatch();showScreen('chat')">Message 💌</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Plan Modal -->
+  <div class="modal-overlay" id="aiPlanModal">
+    <div class="match-modal ai-plan">
+      <h3>✨ AI Tonight’s Plan</h3>
+      <div class="plan-item">
+        <strong>📍 Best Event:</strong> Dandiya Reloaded @ DU Rugby Ground<br>
+        <span style="font-size:0.78rem;color:var(--text-muted)">7:30 PM • ~12k expected • High Traditional + Fusion energy</span>
+      </div>
+      <div class="plan-item">
+        <strong>👗 Your Look:</strong> Deep maroon kurta with gold work + neon stick accents. Matches today’s Navratri color vibe.
+      </div>
+      <div class="plan-item">
+        <strong>👥 Suggested Circle:</strong> Invite Priya, Arjun & Sneha (92% compat). Ready message:<br>
+        <em style="display:block;margin-top:6px;font-size:0.82rem;opacity:0.9">“Hey! Forming a raas circle for DU Dandiya tonight. Intermediate+ level. You in? 🔥”</em>
+      </div>
+      <div class="plan-item">
+        <strong>💡 Safety:</strong> Meet at main gate public area. Share live location with a friend.
+      </div>
+      <button class="btn btn-primary btn-full" onclick="closeAIPlan()">Got it! Let’s Raas 💃</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+const profiles = [
+  { id:1, name:"Priya Mehta", age:21, college:"Lady Shri Ram College", year:"3rd", skill:"Pro", style:"Traditional",
+    bio:"Garba nights are my therapy 💃 Looking for someone who can keep up with the dhol!",
+    photo:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop&crop=face",
+    score:94, why:"Dance level match + shared love for classical Garba + 2 mutual DU friends", live:true },
+  { id:2, name:"Ananya Shah", age:20, college:"Delhi University", year:"2nd", skill:"Intermediate", style:"Modern fusion",
+    bio:"Neon sticks + old-school dhol = perfect night. Let’s make a circle!",
+    photo:"https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&h=800&fit=crop&crop=face",
+    score:89, why:"Same campus + complementary fusion style + playlist overlap 78%", live:false },
+  { id:3, name:"Sneha Patel", age:22, college:"Amity University", year:"4th", skill:"Beginner", style:"Both",
+    bio:"New to dandiya but learning fast. Patient partners preferred 🙏",
+    photo:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&h=800&fit=crop&crop=face",
+    score:81, why:"Looking for group + your Intermediate level is ideal mentor match", live:true },
+  { id:4, name:"Kavya Reddy", age:21, college:"Christ University", year:"3rd", skill:"Pro", style:"Traditional",
+    bio:"9 nights, 9 outfits, endless energy. Who’s joining the raas?",
+    photo:"https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&h=800&fit=crop&crop=face",
+    score:91, why:"Pro level + Traditional preference + high style compatibility", live:false },
+  { id:5, name:"Riya Kapoor", age:19, college:"SRCC", year:"1st", skill:"Intermediate", style:"Modern fusion",
+    bio:"First Navratri in Delhi. Need a guide who knows the best nights!",
+    photo:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&h=800&fit=crop&crop=face",
+    score:86, why:"Freshman energy + your experience = perfect balance", live:true }
+];
+
+const events = [
+  { title:"Dandiya Reloaded", place:"DU Rugby Ground", time:"Tonight 7:30 PM", hot:true },
+  { title:"Garba Night @ LSR", place:"LSR Campus", time:"Tomorrow 8 PM", hot:true },
+  { title:"Amity Raas Mahotsav", place:"Amity Noida", time:"Sat 7 PM", hot:false },
+  { title:"North Campus Dhol Beats", place:"Kamla Nagar", time:"Fri 8:30 PM", hot:true }
+];
+
+const chats = [
+  { name:"Priya Mehta", msg:"Your stick game looks solid 🔥", time:"2m", photo:profiles[0].photo, unread:true },
+  { name:"Ananya Shah", msg:"Which night are you free?", time:"1h", photo:profiles[1].photo, unread:false },
+  { name:"Sneha Patel", msg:"Thanks for the tips!", time:"3h", photo:profiles[2].photo, unread:false }
+];
+
+let currentIndex = 0;
+let isDragging = false;
+let startX = 0;
+let currentX = 0;
+
+function createParticles() {
+  const c = document.getElementById('particles');
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random()*100 + '%';
+    p.style.animationDelay = Math.random()*14 + 's';
+    p.style.animationDuration = (10 + Math.random()*8) + 's';
+    const s = 3 + Math.random()*6;
+    p.style.width = p.style.height = s + 'px';
+    p.style.background = ['#FFD700','#FF6B35','#12B886','#FF2E63','#BF5AF2'][Math.floor(Math.random()*5)];
+    c.appendChild(p);
+  }
+}
+
+document.querySelectorAll('.chip-group').forEach(g => {
+  g.addEventListener('click', e => {
+    if (e.target.classList.contains('chip')) {
+      g.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      e.target.classList.add('active');
+    }
+  });
+});
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const nav = document.getElementById('bottomNav');
+  const fab = document.getElementById('fab');
+  if (['home','matches','events','chat','profile'].includes(id)) {
+    nav.style.display = 'flex';
+    fab.classList.remove('hidden');
+  } else {
+    nav.style.display = 'none';
+    fab.classList.add('hidden');
+  }
+  document.querySelectorAll('.nav-item').forEach(n => {
+    n.classList.toggle('active', n.dataset.screen === id);
+  });
+  if (id === 'home') renderCards();
+  if (id === 'matches') renderMatches();
+  if (id === 'events') renderAIEvents();
+  if (id === 'chat') renderChats();
+  if (id === 'profile') updateProfileUI();
+  if (id === 'onboarding') loadUserProfileIntoForm();
+}
+
+/* ===== PROFILE + UNIQUE ID (localStorage, revisit-safe) ===== */
+function generateUniqueId() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let id = 'DM-';
+  for (let i = 0; i < 6; i++) id += chars[Math.floor(Math.random() * chars.length)];
+  return id;
+}
+
+function getActiveChipVal(groupId) {
+  const el = document.querySelector('#' + groupId + ' .chip.active');
+  return el ? (el.dataset.val || el.textContent.trim()) : '';
+}
+
+function setActiveChip(groupId, val) {
+  const group = document.getElementById(groupId);
+  if (!group) return;
+  group.querySelectorAll('.chip').forEach(c => {
+    const v = c.dataset.val || c.textContent.trim();
+    c.classList.toggle('active', v === val || String(v) === String(val));
+  });
+}
+
+function onCollegeChange() {
+  const sel = document.getElementById('college');
+  const wrap = document.getElementById('collegeOtherWrap');
+  if (!sel || !wrap) return;
+  if (sel.value === 'Other') {
+    wrap.classList.remove('hidden');
+    document.getElementById('collegeOther')?.focus();
+  } else {
+    wrap.classList.add('hidden');
+  }
+}
+
+function getSelectedCollege() {
+  const sel = document.getElementById('college');
+  if (!sel) return '';
+  if (sel.value === 'Other') {
+    const manual = (document.getElementById('collegeOther')?.value || '').trim();
+    return manual || 'Other';
+  }
+  return sel.value;
+}
+
+function saveUserProfile() {
+  const college = getSelectedCollege();
+  if (!college || college === 'Other') {
+    showToast('Please enter your college name');
+    return null;
+  }
+  let profile = null;
+  try { profile = JSON.parse(localStorage.getItem('dandiyamatch_profile') || 'null'); } catch (_) {}
+  const uniqueId = (profile && profile.uniqueId) ? profile.uniqueId : generateUniqueId();
+  const data = {
+    uniqueId,
+    college,
+    year: getActiveChipVal('yearChips') || '1',
+    skill: getActiveChipVal('skillChips') || 'Beginner',
+    style: getActiveChipVal('styleChips') || 'Traditional',
+    looking: getActiveChipVal('lookingChips') || 'Date',
+    gender: getActiveChipVal('genderChips') || 'Women',
+    radius: document.getElementById('radius')?.value || '15',
+    updatedAt: Date.now()
+  };
+  localStorage.setItem('dandiyamatch_profile', JSON.stringify(data));
+  return data;
+}
+
+function loadUserProfileIntoForm() {
+  let data = null;
+  try { data = JSON.parse(localStorage.getItem('dandiyamatch_profile') || 'null'); } catch (_) {}
+  if (!data) {
+    onCollegeChange();
+    return;
+  }
+  const sel = document.getElementById('college');
+  const otherWrap = document.getElementById('collegeOtherWrap');
+  const otherInput = document.getElementById('collegeOther');
+  if (sel) {
+    const options = Array.from(sel.options).map(o => o.value);
+    if (options.includes(data.college)) {
+      sel.value = data.college;
+      otherWrap?.classList.add('hidden');
+    } else {
+      sel.value = 'Other';
+      otherWrap?.classList.remove('hidden');
+      if (otherInput) otherInput.value = data.college;
+    }
+  }
+  setActiveChip('yearChips', data.year);
+  setActiveChip('skillChips', data.skill);
+  setActiveChip('styleChips', data.style);
+  setActiveChip('lookingChips', data.looking);
+  setActiveChip('genderChips', data.gender);
+  const radius = document.getElementById('radius');
+  if (radius && data.radius) radius.value = data.radius;
+  onCollegeChange();
+}
+
+function updateProfileUI() {
+  let data = null;
+  try { data = JSON.parse(localStorage.getItem('dandiyamatch_profile') || 'null'); } catch (_) {}
+  const idEl = document.getElementById('uniqueIdText');
+  const metaEl = document.getElementById('profileMeta');
+  if (idEl) idEl.textContent = data?.uniqueId || '—';
+  if (metaEl && data) {
+    const yearLabel = data.year === '1' ? '1st' : data.year === '2' ? '2nd' : data.year === '3' ? '3rd' : '4th+';
+    metaEl.textContent = `${data.college} • ${yearLabel} Year • ${data.skill}`;
+  }
+  if (data?.style) {
+    const badges = document.getElementById('profileBadges');
+    if (badges) {
+      badges.innerHTML = `
+        <span class="badge">${data.style}</span>
+        <span class="badge dance">${data.looking === 'Group' ? 'Open to Groups' : data.looking === 'Both' ? 'Date + Groups' : 'Looking for Date'}</span>
+        <span class="badge hot">Verified ✅</span>`;
+    }
+  }
+}
+
+function openOnboardingForEdit() {
+  loadUserProfileIntoForm();
+  showScreen('onboarding');
+}
+
+function finishOnboarding() {
+  const data = saveUserProfile();
+  if (!data) return;
+  updateProfileUI();
+  showToast('Preferences saved! Your ID: ' + data.uniqueId);
+  setTimeout(() => showScreen('home'), 900);
+}
+
+function renderCards() {
+  const container = document.getElementById('swipeContainer');
+  container.innerHTML = '';
+  if (currentIndex >= profiles.length) {
+    container.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;text-align:center;padding:40px">
+      <div>
+        <div style="font-size:3rem;margin-bottom:12px">🌙</div>
+        <h2 style="margin-bottom:10px;font-weight:800">No more profiles tonight</h2>
+        <p style="color:var(--text-muted);margin-bottom:22px;font-size:0.9rem">Check AI Matches or come back tomorrow for fresh energy!</p>
+        <button class="btn btn-primary" onclick="currentIndex=0;renderCards()">Reset Deck 🔄</button>
+      </div></div>`;
+    return;
+  }
+  for (let i = Math.min(currentIndex + 1, profiles.length - 1); i >= currentIndex; i--) {
+    const p = profiles[i];
+    const card = document.createElement('div');
+    card.className = 'profile-card';
+    card.dataset.id = p.id;
+    if (i > currentIndex) {
+      card.style.transform = 'scale(0.94) translateY(14px)';
+      card.style.opacity = '0.65';
+      card.style.zIndex = '1';
+    } else {
+      card.style.zIndex = '2';
+    }
+    card.innerHTML = `
+      <img src="${p.photo}" alt="${p.name}" draggable="false">
+      <div class="card-overlay-top"></div>
+      ${p.live ? '<div class="live-badge"><span class="live-dot"></span> Active now</div>' : ''}
+      <div class="compat-score">⚡ ${p.score}%</div>
+      <div class="stamp like">LIKE</div>
+      <div class="stamp nope">NOPE</div>
+      <div class="profile-info">
+        <div class="profile-name">${p.name}, ${p.age} <span class="verified-tick">✓</span></div>
+        <div class="profile-meta">${p.college} • ${p.year} Year</div>
+        <div class="badges">
+          <span class="badge dance">${p.skill}</span>
+          <span class="badge">${p.style}</span>
+          ${p.score >= 90 ? '<span class="badge hot">Top Match</span>' : ''}
+        </div>
+        <p style="font-size:0.84rem;opacity:0.92;line-height:1.4">${p.bio}</p>
+      </div>
+    `;
+    if (i === currentIndex) addSwipeListeners(card);
+    container.appendChild(card);
+  }
+}
+
+function addSwipeListeners(card) {
+  card.addEventListener('pointerdown', e => {
+    isDragging = true; startX = e.clientX;
+    card.setPointerCapture(e.pointerId);
+  });
+  card.addEventListener('pointermove', e => {
+    if (!isDragging) return;
+    currentX = e.clientX - startX;
+    const rot = currentX * 0.07;
+    card.style.transform = `translateX(${currentX}px) rotate(${rot}deg)`;
+    card.style.transition = 'none';
+    const likeStamp = card.querySelector('.stamp.like');
+    const nopeStamp = card.querySelector('.stamp.nope');
+    if (currentX > 40) {
+      likeStamp.style.opacity = Math.min(currentX / 120, 1);
+      likeStamp.style.transform = `rotate(-20deg) scale(${0.5 + Math.min(currentX/200, 0.5)})`;
+      nopeStamp.style.opacity = 0;
+    } else if (currentX < -40) {
+      nopeStamp.style.opacity = Math.min(-currentX / 120, 1);
+      nopeStamp.style.transform = `rotate(20deg) scale(${0.5 + Math.min(-currentX/200, 0.5)})`;
+      likeStamp.style.opacity = 0;
+    } else {
+      likeStamp.style.opacity = 0;
+      nopeStamp.style.opacity = 0;
+    }
+  });
+  card.addEventListener('pointerup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    card.style.transition = 'transform 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.3s';
+    if (Math.abs(currentX) > 110) {
+      animateSwipe(card, currentX > 0 ? 'right' : 'left');
+    } else {
+      card.style.transform = '';
+      card.querySelectorAll('.stamp').forEach(s => { s.style.opacity = 0; });
+    }
+    currentX = 0;
+  });
+}
+
+function swipe(dir) {
+  const cards = document.querySelectorAll('.profile-card');
+  const top = cards[cards.length - 1];
+  if (top) animateSwipe(top, dir);
+}
+
+function animateSwipe(card, dir) {
+  const x = dir === 'left' ? -480 : 480;
+  const rot = dir === 'left' ? -28 : 28;
+  card.style.transform = `translateX(${x}px) rotate(${rot}deg)`;
+  card.style.opacity = '0';
+  setTimeout(() => {
+    if (dir === 'right' || dir === 'super') {
+      if (Math.random() > 0.35 || dir === 'super') {
+        showMatch(profiles[currentIndex]);
+      } else {
+        showToast(dir === 'super' ? 'Super Liked! ⭐ They’ll notice' : 'Liked! Waiting for them 💫');
+      }
+    }
+    currentIndex++;
+    renderCards();
+  }, 300);
+}
+
+function renderMatches() {
+  document.getElementById('matchList').innerHTML = profiles.map(p => `
+    <div class="match-item" onclick='showMatch(${JSON.stringify(p)})'>
+      <img src="${p.photo}" class="match-avatar" alt="${p.name}">
+      <div class="match-info">
+        <h4>${p.name}</h4>
+        <p>${p.college} • ${p.skill} • ${p.style}</p>
+        <div class="why-match">💡 ${p.why}</div>
+      </div>
+      <div class="score-pill">${p.score}%</div>
+    </div>
+  `).join('');
+}
+
+function renderAIEvents() {
+  document.getElementById('aiEvents').innerHTML = events.map(e => `
+    <div class="plan-item" style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <strong>${e.title}</strong><br>
+        <span style="font-size:0.78rem;color:var(--text-muted)">${e.place} • ${e.time}</span>
+      </div>
+      ${e.hot ? '<span class="event-hot">🔥 HOT</span>' : ''}
+    </div>
+  `).join('');
+}
+
+function renderChats() {
+  document.getElementById('chatList').innerHTML = chats.map(c => `
+    <div class="chat-item" onclick="showToast('Opening chat with ${c.name}...')">
+      <img src="${c.photo}" class="chat-avatar" alt="${c.name}">
+      <div class="chat-preview">
+        <h4>${c.name}</h4>
+        <p>${c.msg}</p>
+      </div>
+      <div style="text-align:right">
+        <div class="chat-time">${c.time}</div>
+        ${c.unread ? '<div class="unread" style="margin:6px 0 0 auto"></div>' : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderEventsStrip() {
+  document.getElementById('eventsScroll').innerHTML = events.map(e => `
+    <div class="event-card">
+      <div class="event-title">${e.title}</div>
+      <div class="event-meta">${e.place}<br>${e.time}</div>
+      ${e.hot ? '<span class="event-hot">🔥 Hot Tonight</span>' : ''}
+    </div>
+  `).join('');
+}
+
+function showMatch(profile) {
+  if (typeof profile === 'string') profile = JSON.parse(profile);
+  document.getElementById('matchThem').src = profile.photo;
+  document.getElementById('matchMsg').textContent = profile.why || "You both vibe on Traditional Garba energy!";
+  document.getElementById('matchModal').classList.add('active');
+  createConfetti();
+}
+
+function closeMatch() { document.getElementById('matchModal').classList.remove('active'); }
+function openAIPlan() { document.getElementById('aiPlanModal').classList.add('active'); }
+function closeAIPlan() { document.getElementById('aiPlanModal').classList.remove('active'); }
+
+function createConfetti() {
+  const c = document.getElementById('confetti');
+  c.innerHTML = '';
+  const colors = ['#FFD700','#FF6B35','#12B886','#FF2E63','#BF5AF2','#FFFFFF','#FFE566'];
+  for (let i = 0; i < 55; i++) {
+    const p = document.createElement('div');
+    p.className = 'confetti-piece';
+    p.style.left = Math.random()*100 + '%';
+    p.style.background = colors[Math.floor(Math.random()*colors.length)];
+    p.style.animationDelay = Math.random()*0.6 + 's';
+    p.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    p.style.width = (6 + Math.random()*8) + 'px';
+    p.style.height = (6 + Math.random()*8) + 'px';
+    c.appendChild(p);
+  }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const cur = html.getAttribute('data-theme');
+  html.setAttribute('data-theme', cur === 'light' ? '' : 'light');
+  showToast(cur === 'light' ? 'Dark festive mode 🌙' : 'Light festive mode ☀️');
+}
+
+function refreshMatches() {
+  showToast('AI re-ranking with latest activity...');
+  setTimeout(renderMatches, 700);
+}
+
+
+/* ===== AUTH =====
+  Abhi DEMO Google login chalega (fully working, GitHub Pages ready).
+  Baad mein REAL Google security chahiye to:
+  1. Firebase project banao → console.firebase.google.com
+  2. Authentication → Google enable karo
+  3. Neeche firebaseConfig mein real keys paste karo
+  4. Authorized domains mein apna github.io add karo
+  Keys add karte hi real Google popup automatically on ho jayega.
+*/
+const firebaseConfig = {
+  apiKey: "YOUR_FIREBASE_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.firebasestorage.app",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+let firebaseReady = false, currentUser = null, guestMode = false;
+
+function firebaseConfigured() {
+  return firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("YOUR_") &&
+         firebaseConfig.projectId && !firebaseConfig.projectId.startsWith("YOUR_");
+}
+
+function setAuthError(m = "") {
+  const e = document.getElementById("authError");
+  if (e) e.textContent = m;
+}
+
+async function initFirebaseAuth() {
+  if (!firebaseConfigured()) return;
+  try {
+    const app = window.FirebaseAuth.initializeApp(firebaseConfig);
+    const auth = window.FirebaseAuth.getAuth(app);
+    window.__firebaseAuth = auth;
+    firebaseReady = true;
+    window.FirebaseAuth.onAuthStateChanged(auth, u => {
+      currentUser = u;
+      if (u) {
+        guestMode = false;
+        enterApp(false);
+      }
+    });
+  } catch (e) {
